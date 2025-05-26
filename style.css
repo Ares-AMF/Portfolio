@@ -1,0 +1,535 @@
+/* Variables de Color y Fuentes */
+:root {
+    --primary-bg: #121212; /* Negro profundo */
+    --secondary-bg: #1E1E1E; /* Un gris oscuro para elementos como cards */
+    --accent-guinda: #9F1010; /* Guinda principal */
+    --accent-guinda-hover: #BF2A2A; /* Guinda para hover */
+    --text-primary: #F5F5F5; /* Blanco/Gris muy claro */
+    --text-secondary: #B0B0B0; /* Gris claro para subtítulos */
+    --text-logo: #FFFFFF;
+    --border-color: #333333; /* Bordes sutiles */
+
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Open Sans', sans-serif;
+    --box-shadow-light: rgba(159, 16, 16, 0.2); /* Sombra guinda sutil */
+    --box-shadow-strong: rgba(159, 16, 16, 0.5);
+}
+
+/* Reseteo Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-secondary);
+    line-height: 1.7;
+    color: var(--text-primary);
+    background-color: var(--primary-bg);
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    /* Se elimina el background-image, particles.js lo gestionará */
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: var(--primary-bg); /* Fondo para particles */
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: transparent;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar.scrolled {
+    background-color: rgba(18, 18, 18, 0.85); /* Negro semi-transparente */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+}
+
+.logo {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 900; /* Más grueso */
+    color: var(--text-logo);
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 2.5rem; /* Más espaciado */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+    position: relative; /* Para el efecto underline */
+}
+
+.nav-links a::after { /* Efecto underline sutil */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: var(--accent-guinda);
+    transition: width 0.3s ease;
+    -webkit-transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-guinda);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 0;
+    background: var(--accent-guinda-hover);
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 28px; /* Ligeramente más grande */
+    height: 3px;
+    background-color: var(--text-primary);
+    margin: 5px;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+
+/* Hero Content */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+    padding: 0 2rem;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-family: var(--font-primary);
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    animation: fadeInDown 1s ease-out;
+    color: var(--text-primary);
+}
+
+.hero-content p#subtitle {
+    font-family: var(--font-secondary);
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    animation: fadeInUp 1s ease-out 0.5s;
+    animation-fill-mode: backwards;
+}
+
+.highlight-ai {
+    color: var(--accent-guinda);
+    font-weight: 700;
+}
+
+.cta-button {
+    background-color: var(--accent-guinda);
+    color: white;
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 20px var(--box-shadow-light);
+    animation: pulse 2s infinite 1s;
+    border: 2px solid var(--accent-guinda); /* Borde del mismo color */
+}
+
+.cta-button i {
+    margin-left: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--accent-guinda-hover);
+    border-color: var(--accent-guinda-hover);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 25px var(--box-shadow-strong);
+}
+
+.cta-button:hover i {
+    transform: translateX(6px);
+}
+
+/* Secciones Generales */
+.section {
+    padding: 80px 5%;
+    text-align: center;
+}
+.section:nth-child(even) { /* Alternar color de fondo sutilmente si se desea */
+    background-color: var(--secondary-bg);
+}
+
+
+.section h2 {
+    font-family: var(--font-primary);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+}
+
+.section h2::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 4px;
+    background-color: var(--accent-guinda);
+    margin: 0.8rem auto 3rem;
+    border-radius: 2px;
+}
+
+/* Sobre Mí */
+.sobre-mi-content {
+    display: flex;
+    flex-direction: column; /* Cambiar a row si se añade imagen */
+    align-items: center;
+    text-align: left; /* O center si se prefiere */
+    max-width: 800px;
+    margin: 0 auto;
+}
+.sobre-mi-texto p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+/* .profile-pic { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin-top: 2rem; border: 4px solid var(--accent-guinda); } */
+
+
+/* Project Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    background: var(--secondary-bg);
+    border-radius: 12px; /* Más redondeado */
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 15px var(--box-shadow-light);
+}
+
+.project-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    /* filter: grayscale(50%) contrast(110%); Opción para un look más tech */
+    transition: filter 0.3s ease;
+}
+
+.project-card h3 {
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin: 1.2rem 1.5rem 0.5rem;
+}
+
+.project-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0 1.5rem 1rem;
+    line-height: 1.6;
+    flex-grow: 1; /* Empuja el link hacia abajo */
+}
+
+.project-tags {
+    margin: 0 1.5rem 1rem;
+}
+
+.project-tags span {
+    display: inline-block;
+    background-color: rgba(159, 16, 16, 0.15); /* Guinda muy transparente */
+    color: var(--accent-guinda);
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.project-link {
+    display: inline-block;
+    margin: 0rem 1.5rem 1.5rem;
+    color: var(--accent-guinda);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.project-link i {
+    margin-left: 0.4rem;
+}
+
+.project-link:hover {
+    color: var(--accent-guinda-hover);
+}
+
+/* Tecnologías */
+.tech-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tech-icon {
+    font-size: 3.5rem; /* Iconos más grandes */
+    color: var(--text-secondary);
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative; /* Para el tooltip */
+}
+
+.tech-icon:hover {
+    color: var(--accent-guinda);
+    transform: scale(1.2);
+}
+
+/* Tooltip para iconos de tecnología */
+.tech-icon::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px); /* Ajustar posicionamiento */
+    background-color: var(--accent-guinda);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
+}
+
+.tech-icon:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-10px); /* Efecto de subida */
+}
+
+
+/* Contacto y Social Icons */
+.social-icons {
+    margin-top: 2.5rem;
+}
+
+.social-icons a {
+    color: var(--text-secondary);
+    font-size: 2.5rem;
+    margin: 0 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative; /* Para tooltip */
+}
+
+.social-icons a:hover {
+    color: var(--accent-guinda);
+    transform: translateY(-5px);
+}
+/* Tooltip para iconos sociales (similar a tech-icon) */
+.social-icons a::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -35px; /* Ajuste para que aparezca arriba */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-guinda);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.social-icons a:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Footer */
+footer {
+    background-color: #0A0A0A; /* Un negro aún más oscuro para el footer */
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 2.5rem 0;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+}
+footer p {
+    letter-spacing: 0.5px;
+}
+
+/* Animaciones (mismas, se ven bien en tema oscuro) */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 var(--box-shadow-light); }
+    70% { box-shadow: 0 0 0 20px rgba(159, 16, 16, 0); } /* Guinda transparente */
+    100% { box-shadow: 0 0 0 0 rgba(159, 16, 16, 0); }
+}
+
+
+/* Responsive (Menú Hamburguesa) */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        position: fixed; /* Cambiado a fixed para cubrir toda la pantalla */
+        right: 0px;
+        height: 100vh;
+        top: 0;
+        background-color: rgba(18, 18, 18, 0.98); /* Fondo oscuro para el menú móvil */
+        backdrop-filter: blur(5px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Centrar verticalmente los links */
+        width: 100%; /* Ocupa toda la pantalla */
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in-out;
+        padding-top: 0;
+    }
+
+    .nav-links li {
+        opacity: 0;
+        margin-left: 0;
+        margin-bottom: 2.5rem; /* Más espaciado */
+    }
+
+    .nav-links a {
+        font-size: 1.3rem; /* Links más grandes en móvil */
+        color: var(--text-primary); /* Asegurar que sean visibles */
+    }
+    .nav-links a:hover {
+        color: var(--accent-guinda);
+    }
+    .nav-links a::after { /* Deshabilitar underline en móvil si se desea o ajustar */
+        display: none;
+    }
+
+    .burger {
+        display: block;
+        z-index: 1001; /* Encima del nav-links */
+        position: fixed; /* Para que no se mueva con el scroll del hero */
+        top: 1.7rem;
+        right: 5%;
+    }
+    .burger div {
+      background-color: var(--text-primary); /* Siempre visibles */
+    }
+
+    .navbar.scrolled .burger div { /* Mantiene el color de las líneas del burger */
+        background-color: var(--text-primary);
+    }
+
+
+    .hero-content h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+    .hero-content p#subtitle {
+        font-size: clamp(1rem, 5vw, 1.2rem);
+    }
+
+    .nav-active {
+        transform: translateX(0%);
+    }
+
+    @keyframes navLinkFade {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+
+    .toggle .line1 {
+        transform: rotate(-45deg) translate(-6px, 7px);
+    }
+    .toggle .line2 {
+        opacity: 0;
+    }
+    .toggle .line3 {
+        transform: rotate(45deg) translate(-6px, -7px);
+    }
+}
